@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amosison Chatbot</title>
+  <style>
+    body {font-family: sanserif;
+    background-color: #131314;
+    color: gold;
+    display:flex;
+    justify-content:center;
+    margin: 0;
+    padding-top:20px;
+    }
+    #chat-box {width:350px;
+      background: black;
+      border-radius:10px;
+      padding:20px;
+      box-shadow:4px 10px rgba (0, 0, 0, 0.1);
+    }
+    #messages {height:250px;
+      overflow-y: auto;
+      border:#131314;
+      background-color: #131314
+      padding:10px;
+      margin-bottom:10px;
+      border-radius:5px;
+      
+    }
+    .bot {color: #e3e3e3;
+      font-weight:bold;
+      margin:5px 0;
+     
+    }
+    .user {color:#e3e3e3;
+      text-align: right;
+      margin:5px 0;
+    }
+    .input {width:70%
+      background-color:#1e1f20;
+      border:1px-solid #444746;
+      color:white;
+    }
+    .button {background-color:#a887fa;
+      color:#131314;
+      border:none;
+      font-weight:bold;
+      cursor:pointer;
+}
+
+    }
+   </style>
+   </head>
+   <body>
+
+     <div id= "chat-box">
+       <h3>Amosison chatbot</h3>
+      <div id= "messages">
+        <p class= "bot"> Bot: Hello! Amosison ai is ready to give u the answers.what is your name ? Proceed by typing ur name</p>
+     </div>
+     <input type="text" id= "userInput" placeholder="Type here...">
+     <button onclick= "sendMessage()">send</button>
+     </div>
+  <script>
+    let userName = ""; // Stores the user's name after they introduce themselves
+    let step = "ask_name"; // Tracks where we are in the conversation
+
+    function sendMessage() {
+      let inputField = document.getElementById("userInput");
+      let text = inputField.value.trim();
+      let messagesDiv = document.getElementById("messages");
+
+      if (text === "") return;
+
+      // 1. Show the user's message on screen
+      messagesDiv.innerHTML += `<p class="user">You: ${text}</p>`;
+      inputField.value = ""; // Clear input bar
+
+      // 2. Chatbot Conversation Logic
+      let botResponse = "";
+
+      if (step === "ask_name") {
+        userName = text;
+        botResponse = `Hello 👋🤠, ${userName}! It is so nice to meet you. This is amosison ai to help you.proceed by typing "answers"`;
+        step = "ask_mood"; // Advance conversation to the next step
+      } 
+      else if (step === "ask_mood") {
+        let lowerText = text.toLowerCase();
+        if (lowerText.includes("answers") || lowerText.includes("great") || lowerText.includes("fine")) {
+          botResponse = `### Causes of the French Revolution
+        The French Revolution of 1789 stands as one of the most transformative watersheds in global history, permanently altering the landscape of modern governance and human rights. Sparked by a volatile combination of deep-seated social inequality, economic bankruptcy, and political exclusion, the uprising dismantled centuries of absolute monarchy and feudal privilege under the banner of "Liberty, Equality, Fraternity." While the revolution successfully rewrote the social contract through major milestones like the Declaration of the Rights of Man, its radical phases—most notably the Reign of Terror—exposed the volatile nature of sudden systemic collapse. Ultimately, the shockwaves of 1789 did not just reshape France; they provided enduring lessons for modern societies, warning contemporary leaders that ignoring widespread economic hardship and civic marginalization can pave a direct path to national destabilization.
+  
+
+* The 🎮 Estates System: Society was strictly divided. The First Estate (Clergy) and Second Estate (Nobility) held all the privileges and paid almost no taxes. The Third Estate (98% of the population, including peasants and professionals) bore the entire tax burden.
+* Economic Bankruptcy: France went deep into debt by supporting the American Revolutionary War and maintaining the extravagant lifestyle of the royal court at Versailles.
+* Famine and Bread Shortages: Severe weather in the late 1780s led to terrible harvests. The price of bread skyrocketed, causing widespread starvation and inflation.
+* The Enlightenment: Philosophers like Rousseau, Voltaire, and Montesquieu introduced new ideas about liberty, equality, and democratic governance, challenging the divine right of kings.
+* Weak Leadership: King Louis XVI was indecisive and failed to implement financial reforms, while his wife, Marie Antoinette, became a symbol of royal waste and indifference.
+
+
+### Major Events of the Revolution
+
+* Meeting of the Estates-General (May 1789): Louis XVI called the assembly to resolve the financial crisis, but deadlock over voting rights led the Third Estate to break away.
+* The Tennis Court Oath (June 1789): The Third Estate declared themselves the National Assembly and swore not to disband until France had a constitution.
+* Storming of the Bastille (July 14, 1789): Citizens attacked the royal fortress and prison to seize gunpowder, marking the official start of the popular uprising.
+* Declaration of the Rights of Man (August 1789): The National Assembly adopted a document guaranteeing liberty, equality, and fraternity to all citizens.
+* Execution of the King (January 1793): Louis XVI was convicted of high treason and executed by guillotine, ending the absolute monarchy.
+* The Reign of Terror (1793–1794): Led by Maximilien Robespierre, the radical Jacobin government executed tens of thousands of suspected "enemies of the revolution."
+
+
+### Consequences of the Revolution
+
+* Fall of absolute monarchy: Feudalism was abolished and the divine right of kings was permanently destroyed in France.
+* Rise of Nationalism: A new sense of national identity emerged, transforming subjects of a king into citizens of a nation.
+* Spread of Democratic Ideals: The principles of legal equality and individual rights spread across Europe, inspiring future democratic movements.
+* Rise of Napoleon Bonaparte: The chaos and instability left by the Reign of Terror allowed a brilliant military general to seize power and establish the French Empire.
+
+
+### Lessons for Modern Societies
+
+* Address Inequality Early: Ignoring extreme wealth gaps and unfair tax systems creates deep-seated resentment that eventually destabilizes a country.
+* Ensure Inclusive Governance: When large groups of citizens are excluded from political decision-making, they will eventually seek to overthrow the system rather than reform it.
+* Prioritize Basic Needs: Economic hardships, particularly food insecurity and high living costs, are often the immediate triggers for mass civil unrest.
+* Avoid Political Extremism: The Reign of Terror proves that when revolutions turn to radical extremism and abandon the rule of law, they often replace one form of tyranny with another.
+`;
+        } else {
+          botResponse = `please, ${userName}! try typing  answers ⌨️✍️ so that i can help you because i was programmed by Amosison to help you`;
+        
+        }
+        step = "chatting";
+      } 
+      else {
+        botResponse = `That sounds interesting! Tell me more about that, ${userName}.`;
+      }
+
+      // 3. Show the bot's response on screen
+      messagesDiv.innerHTML += `<p class="bot">Bot: ${botResponse}</p>`;
+
+      // Auto-scroll to latest message
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
+
